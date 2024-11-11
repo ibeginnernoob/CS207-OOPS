@@ -12,29 +12,36 @@ public class IphoneDetailsStore {
     // Method to parse the file and store model details
     public void parseFile(String filePath) {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        	
             String line;
             String currentModel = null;
             String details = "";
 
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("Extracted Data from:")) {
+                	
                     // Store the previous model's details before starting a new one
                     if (currentModel != null) {
                         iPhoneDetails.put(currentModel, details.trim());
                     }
+                    
                     // Extract model name and reset details for the new model
                     currentModel = line.substring(line.lastIndexOf('/') + 1).replace('_', ' ');
                     details = "";
+                    
                 } else if (currentModel != null) {
+                	
                     // Accumulate details for the current model
                     details += line + "\n";
+                    
                 }
             }
 
-            // Store the last model's details
             if (currentModel != null) {
-                iPhoneDetails.put(currentModel, details.trim());
+            	
+                iPhoneDetails.put(currentModel, details.trim()); // Creating an entry for a new Iphone model in the HashMap
             }
+            
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,12 +50,14 @@ public class IphoneDetailsStore {
 
     // Method to search for details by model name
     public String searchByModel(String modelName) {
+    	
         return iPhoneDetails.getOrDefault(modelName, "Model not found");
+        
     }
 
     public static void main(String[] args) {
-        // Create an instance of Iphone class instead of JFileChooser
-    	IphoneDetailsStore iphone = new IphoneDetailsStore();
+    	
+    	IphoneDetailsStore iphoneDetails = new IphoneDetailsStore();
         
         // Use JFileChooser to let the user select a file
         JFileChooser fileChooser = new JFileChooser();
@@ -59,8 +68,8 @@ public class IphoneDetailsStore {
             File selectedFile = fileChooser.getSelectedFile();
             String filePath = selectedFile.getAbsolutePath();
             
-            // Parse the file and load the data using the Iphone instance
-            iphone.parseFile(filePath);
+            
+            iphoneDetails.parseFile(filePath);
             
             Scanner scanner = new Scanner(System.in);
             while (true) {
@@ -74,7 +83,7 @@ public class IphoneDetailsStore {
                 }
                 
                 // Display the details for the searched model using the Iphone instance
-                String details = iphone.searchByModel(modelName);
+                String details = iphoneDetails.searchByModel(modelName);
                 System.out.println(details);
                 
                 // Prompt the user again if the model was not found
