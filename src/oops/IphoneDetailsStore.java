@@ -48,7 +48,7 @@ public class IphoneDetailsStore {
 
     public static void main(String[] args) {
         // Create an instance of Iphone class instead of JFileChooser
-        Iphone iphone = new Iphone();
+    	IphoneDetailsStore iphone = new IphoneDetailsStore();
         
         // Use JFileChooser to let the user select a file
         JFileChooser fileChooser = new JFileChooser();
