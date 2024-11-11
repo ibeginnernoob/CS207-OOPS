@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
-public class IphoneDetailsStore {
+public class Iphone {
 
     // Map to store the model name as the key and details as the value
     private Map<String, String> iPhoneDetails = new HashMap<>();
