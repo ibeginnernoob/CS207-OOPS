@@ -18,4 +18,4 @@ Now the all the code is stored at path - user_name/desktop/folder_name/oops/src
 that file exists at path - user_name/desktop/folder_name/oops
 
 5. The console then prompts for the name of the iphone for which the details are required.
-Enter the name in the format - IPhone_{enter the specific model number}.
+Enter the name in the format - IPhone {enter the specific model number}.
